@@ -218,7 +218,7 @@ class MainController(QtCore.QObject):
             self._settings.setValue("show_toolbar", self._show_toolbar)
             self._settings.setValue("splitter_pos", self._view.centralWidget().sizes())
             self._settings.setValue("current_filters", self._filters_tree_controller._view.getSelectedFilterNames())
-            self._settings.setValue("main_window_geometry", self._view.saveGeometry())
+            self._settings.setValue(b"main_window_geometry", self._view.saveGeometry())
             self._settings.setValue("main_window_state", self._view.saveState())
 
             self._settings.setValue("add_created_date", self._add_created_date)
@@ -313,7 +313,7 @@ class MainController(QtCore.QObject):
         self._menu_controller.changeHideFutureTasksState(self._hide_future_tasks)
 
     def _updateView(self):
-        self._view.restoreGeometry(self._settings.value("main_window_geometry"))
+        self._view.restoreGeometry(self._settings.value(b"main_window_geometry"))
         self._view.restoreState(self._settings.value("main_window_state"))
         splitterPosition = self._settings.value("splitter_pos", None)
         if splitterPosition:
